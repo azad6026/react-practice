@@ -12,6 +12,7 @@ const axiosInstance = axios.create({
   },
 });
 
+// Axios API Client
 class APIClient<T> {
   endpoint: string;
   constructor(endpoint: string) {
@@ -23,5 +24,44 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 }
+// Fetch API Client - replaced Axios with Fetch API
 
-export default APIClient;
+class APIClientFetch<T> {
+  endpoint: string;
+  baseURL: string;
+  apiKey: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+    this.baseURL = "https://api.rawg.io/api";
+    this.apiKey = "ed8dfcff9fea48fd9c9446c1a5be8932"; // Replace with your actual API key
+  }
+
+  getAll = async (config?: {
+    params?: { [key: string]: string | number | undefined };
+  }): Promise<FetchResponse<T>> => {
+    const url = new URL(`${this.baseURL}${this.endpoint}`);
+    url.searchParams.append("key", this.apiKey);
+
+    if (config?.params) {
+      Object.entries(config.params).forEach(([key, value]) => {
+        if (value !== undefined) {
+          url.searchParams.append(key, value.toString());
+        }
+      });
+    }
+
+    const response = await fetch(url.toString(), {
+      ...config,
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    return response.json();
+  };
+}
+
+export { APIClient, APIClientFetch };
