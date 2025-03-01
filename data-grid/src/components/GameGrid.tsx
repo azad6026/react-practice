@@ -18,6 +18,7 @@ const GameGrid = () => {
   const skeletons = [1, 2, 3, 4, 5, 6];
   const dataLength = data?.pages?.reduce((total, page) => total + page.results.length, 0) ?? 0;
   return (
+    <Box p={3}>
     <InfiniteScroll
       dataLength={dataLength}
       hasMore={!!hasNextPage}
@@ -43,6 +44,7 @@ const GameGrid = () => {
         ))}
       </SimpleGrid>
     </InfiniteScroll>
+    </Box>
   );
 };
 
