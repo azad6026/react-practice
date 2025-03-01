@@ -34,9 +34,8 @@ class APIClientFetch<T> {
   constructor(endpoint: string) {
     this.endpoint = endpoint;
     this.baseURL = "https://api.rawg.io/api";
-    this.apiKey = process.env.VITE_GAMES_API_KEY || ""; // Replace with your actual API key
+    this.apiKey = import.meta.env.VITE_GAMES_API_KEY || ""; // Replace with your actual API key
   }
-
   getAll = async (config?: {
     params?: { [key: string]: string | number | undefined };
   }): Promise<FetchResponse<T>> => {
