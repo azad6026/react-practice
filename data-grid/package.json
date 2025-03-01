@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-amplify/ui-react-storage": "^3.8.1",
+    "@aws-sdk/client-dynamodb": "^3.758.0",
+    "@aws-sdk/util-dynamodb": "^3.758.0",
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
