@@ -41,6 +41,7 @@ function App() {
 
   return (
     <>
+      <p className="font-primary">test</p>
       {/* <div className="main"> */}
       {/* <CurrentLocationWether /> */}
       {/* <Weather city="tehran" /> */}
