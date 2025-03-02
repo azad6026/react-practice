@@ -10,13 +10,12 @@ import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
 
-
 const GenreList = () => {
   const { data, isLoading, error } = useGenres();
-  
+
   const stelectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
   const setSelectdGenreId = useGameQueryStore((s) => s.setGenreId);
-  
+
   if (error) return null;
 
   return (
@@ -37,10 +36,16 @@ const GenreList = () => {
               <Button
                 whiteSpace="normal"
                 textAlign="left"
-                fontWeight={genre.id === stelectedGenreId ? "bold" : "normal"}
+                fontWeight={genre.id === stelectedGenreId ? "700" : "normal"}
                 onClick={() => setSelectdGenreId(genre.id)}
                 fontSize="md"
                 variant="link"
+                _hover={{ textDecoration: "none" }}
+                className={
+                  genre.id === stelectedGenreId
+                    ? "link-hover-underline active"
+                    : "link-hover-underline"
+                }
               >
                 {genre.name}
               </Button>
