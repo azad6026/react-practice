@@ -54,3 +54,34 @@ h1 {
     line-height: 1.1;
   }
 }
+/* hover effects for links */
+
+.link-hover-underline::after,
+.link-hover-underline::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, #d93f64, #724ce6);
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease-out;
+}
+
+.link-hover-underline::before {
+  top: -5px;
+  transform-origin: left;
+}
+.link-hover-underline:hover::after,
+.link-hover-underline:hover::before {
+  transform: scaleX(1);
+}
+
+.active::before,
+.active::after {
+  width: 100%;
+  height: 1px;
+  transform: scaleX(1);
+}
