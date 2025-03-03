@@ -20,6 +20,18 @@ const GameCard = ({ game }: Props) => {
   const { colorMode } = useColorMode();
   return (
     <Card
+      tabIndex={0}
+      transition="all 0.3s ease-in-out"
+      _hover={{
+        transform: "translateY(-4px) scale(1.02)",
+        boxShadow: "lg",
+        cursor: "pointer",
+      }}
+      _focus={{
+        border: "2px solid",
+        borderColor: "blue.500",
+        outline: "none",
+      }}
       className={`card-effect ${
         colorMode === "dark" ? "dark-mode-effect" : "light-mode-effect"
       }`}
