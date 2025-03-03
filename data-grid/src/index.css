@@ -1,9 +1,6 @@
 @import "https://unpkg.com/open-props/easings.min.css";
 
 .springy {
-  /* @media (prefers-reduced-motion: no-preference) {
-    transition: transform 1s var(--ease-spring-3);
-  } */
   transition: transform 1s var(--ease-spring-3) 0.5s, opacity 1s ease 0.5s;
 
   @starting-style {
