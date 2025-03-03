@@ -14,7 +14,7 @@
 @property --＠color-1 {
   syntax: "<color>";
   inherits: false;
-  initial-value: hsl(98 100% 62%);
+  initial-value: hsl(310 100% 59%);
 }
 
 @property --＠color-2 {
@@ -90,14 +90,53 @@ h1 {
   overflow: inherit !important;
 }
 .card-effect {
-  transition: all 0.5s ease;
+  &.light-mode-effect {
+    --bg-color: #cfe3ff;
+    --bg-color-light: #f4f4f4;
+    --text-color-hover: #cdd5d5;
+    --box-shadow-color: rgb(65 31 134 / 61%);
+    transition: all 0.5s linear;
+    border: 1px solid var(--bg-color-light);
+  }
+  &.dark-mode-effect {
+    --bg-color: #1d1c29;
+    --bg-color-light: #2e1a30;
+    --text-color-hover: #4c5656;
+    --box-shadow-color: rgba(248, 168, 215, 0.63);
+    transition: all 0.5s linear;
+  }
+}
+.card-effect::before {
+  content: "";
+}
+.card-effect-body:::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  border-radius: 10px;
+  border: 1px solid var(--bg-color-light);
+  transition: all 0.5s linear;
 }
 .card-effect:hover {
-  transform: scale(1.02) translateX(5px);
+  /* transform: scale(1.02) translateX(1px); */
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
+    0 24px 46px var(--box-shadow-color);
+  & .card-effect-body {
+    border-color: var(--bg-color-light);
+    background: var(--bg-color);
+  }
+}
+.card-effect:hover::before {
+  transform: scale(4) translateZ(0);
 }
 .card-effect:hover.light-mode-effect {
-  box-shadow: 0px 1px 5px #333;
+  /* box-shadow: 0px 1px 5px #333; */
 }
 .card-effect:hover.dark-mode-effect {
-  box-shadow: 0px 0px 3px #fff;
+  /* box-shadow: 0px 0px 3px #fff; */
 }
