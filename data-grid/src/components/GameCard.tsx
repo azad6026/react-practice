@@ -17,7 +17,7 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  const { toggleColorMode, colorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   return (
     <Card
       className={`card-effect ${
