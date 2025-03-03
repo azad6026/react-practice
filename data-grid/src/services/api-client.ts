@@ -23,6 +23,11 @@ class APIClient<T> {
       .get<FetchResponse<T>>(this.endpoint, config)
       .then((res) => res.data);
   };
+  get = (id: string | number) => {
+    return axiosInstance
+      .get<T>(this.endpoint + "/" + id)
+      .then((res) => res.data);
+  };
 }
 // Fetch API Client - replaced Axios with Fetch API
 
@@ -55,6 +60,19 @@ class APIClientFetch<T> {
       method: "GET",
     });
 
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    return response.json();
+  };
+  get = async (id: string | number): Promise<T> => {
+    const url = new URL(`${this.baseURL}${this.endpoint}/${id}`);
+    url.searchParams.append("key", this.apiKey);
+
+    const response = await fetch(url.toString(), {
+      method: "GET",
+    });
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
     }
