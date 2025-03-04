@@ -11,7 +11,7 @@ const GameDetailPage = () => {
     return <div>Loading...</div>;
   }
   if (error || !game) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error?.message}</div>;
   }
   return (
     //  I need to get a game slug and title and description and image and rating
