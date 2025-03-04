@@ -1,8 +1,8 @@
-import { Heading, Image, Text } from "@chakra-ui/react";
-import useGame from "../hooks/useGame";
-import React from "react";
+import { Heading } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
+import GameAttributes from "../components/GameAttributes";
+import useGame from "../hooks/useGame";
 
 const GameDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -18,7 +18,7 @@ const GameDetailPage = () => {
     <>
       <Heading>{game?.name}</Heading>
       <ExpandableText maxChars={400}>{game?.description_raw}</ExpandableText>
-      {/* <Image src={getCroppedImageUrl(game.background_image)} alt={game?.name} /> */}
+      <GameAttributes game={game} />
     </>
   );
 };
