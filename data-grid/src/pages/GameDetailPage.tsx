@@ -2,6 +2,7 @@ import { Heading, Image, Text } from "@chakra-ui/react";
 import useGame from "../hooks/useGame";
 import React from "react";
 import { useParams } from "react-router-dom";
+import ExpandableText from "../components/ExpandableText";
 
 const GameDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -14,12 +15,9 @@ const GameDetailPage = () => {
     return <div>Error: {error?.message}</div>;
   }
   return (
-    //  I need to get a game slug and title and description and image and rating
-    // write a query to get the game details
-
     <>
       <Heading>{game?.name}</Heading>
-      <Text>{game?.description_raw}</Text>
+      <ExpandableText maxChars={400}>{game?.description_raw}</ExpandableText>
       {/* <Image src={getCroppedImageUrl(game.background_image)} alt={game?.name} /> */}
     </>
   );
