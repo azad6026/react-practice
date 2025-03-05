@@ -17,7 +17,7 @@ const GameTrailer = ({ gameId }: Props) => {
   }
   const first = data?.results[0];
   return first ? (
-    <Box maxW="600px" w="100%">
+    <Box maxW="1200px" w="100%" marginY={4}>
       <video
         style={{ width: "100%" }}
         src={first.data[480]}

@@ -9,7 +9,7 @@ interface Props {
 
 const GameAttributes = ({ game }: Props) => {
   return (
-    <SimpleGrid as="dl" columns={{ base: 1, md: 2 }} spacing={10}>
+    <SimpleGrid as="dl" columns={{ base: 2, md: 2 }}>
       <DefinitionItem term="Platforms">
         {game?.parent_platforms.map(({ platform }) => (
           <Text key={platform.id}>{platform.name}</Text>
