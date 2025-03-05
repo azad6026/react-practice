@@ -24,6 +24,7 @@ const ExpandableText = ({ children, maxChars }: ExpandableTextProps) => {
         size="xs"
         fontWeight="bold"
         colorScheme="yellow"
+        margin={2}
         onClick={() => setIsExpanded(!isExpanded)}
       >
         {isExpanded ? "Read Less" : "Read More"}
