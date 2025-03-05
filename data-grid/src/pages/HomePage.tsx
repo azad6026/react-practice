@@ -18,10 +18,11 @@ const HomePage = () => {
           lg: "250px 1fr",
         }}
       >
-        <Show above="lg" />
-        <GridItem area="aside" paddingX={5}>
-          <GenreList />
-        </GridItem>
+        <Show above="lg">
+          <GridItem area="aside" paddingX={5}>
+            <GenreList />
+          </GridItem>
+        </Show>
         <GridItem area="main">
           <Box paddingLeft={2}>
             <GameHeading />
