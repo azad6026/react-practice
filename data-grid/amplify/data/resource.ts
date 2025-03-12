@@ -54,5 +54,6 @@ export const data = defineData({
   schema,
   authorizationModes: {
     defaultAuthorizationMode: "iam",
+    additionalAuthorizationModes: ["apiKey", "amazon_cognito_user_pools"],
   },
 });
