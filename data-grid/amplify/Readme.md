@@ -6,7 +6,7 @@
 - Then, add a service role to the deployed app (see [AWS Amplify Service Role](https://docs.aws.amazon.com/amplify/latest/userguide/amplify-service-role.html) for more details).
 
 ## Build AWS Backend Locally
-- Run `ampx npx sandbox` to create the sandbox environment and build the Amplify backend. This command generates authentication and data resource files and provides a basic Todo schema that you can modify to meet the project's needs.
+- Run `npx ampx sandbox` to create the sandbox environment and build the Amplify backend. This command generates authentication and data resource files and provides a basic Todo schema that you can modify to meet the project's needs.
 - You can deploy the backend app separately in a multi-repo app: [Multi-Repo Deployment](https://docs.amplify.aws/react/deploy-and-host/fullstack-branching/mono-and-multi-repos/).
 - For a monorepo app, refer to: [Monorepo Deployment](https://docs.amplify.aws/react/deploy-and-host/fullstack-branching/monorepos/).
 
