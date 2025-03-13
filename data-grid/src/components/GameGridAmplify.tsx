@@ -4,8 +4,7 @@ import useGamesAmplify from "../hooks/useGamesAmplify";
 import GameCardAmplify from "./amplify/GameCardAmplify";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GameCardSkeletonAmplify from "./amplify/GameCardSkeletonAmplify";
-import { FetchGamesResponse } from "../hooks/useGamesAmplify";
-import { GameAmplify } from "./amplify/GameCardAmplify";
+import { FetchGamesResponse } from "../services/amplify-api-extended";
 import { InfiniteData } from "@tanstack/react-query";
 
 /**

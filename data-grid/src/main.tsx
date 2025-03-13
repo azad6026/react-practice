@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <QueryClientProvider client={queryClient}>
-        <GameList />
+        {/* <GameList /> */}
         <RouterProvider router={router}></RouterProvider>
         <ReactQueryDevtools />
       </QueryClientProvider>

@@ -1,6 +1,11 @@
-import { API } from "aws-amplify";
 import { GameAmplify } from "../components/amplify/GameCardAmplify";
-import { FetchGamesResponse } from "../hooks/useGamesAmplify";
+
+// Define the response type here to break the circular dependency
+export interface FetchGamesResponse {
+  count: number;
+  next: string | null;
+  results: GameAmplify[];
+}
 
 // Mock API call since we don't have the actual implementation
 // In a real-world scenario, this would be replaced with an actual GraphQL query
@@ -100,27 +105,6 @@ export const amplifyGameService = {
       };
 
       return response;
-
-      /* Real implementation would look like this:
-      const result = await API.graphql({
-        query: listGamesExtendedQuery,
-        variables: {
-          filter,
-          limit,
-          nextToken: page > 1 ? `token-for-page-${page}` : null,
-          params: JSON.stringify({ ordering }),
-        },
-      });
-      
-      // Transform the response to match the expected structure
-      const apiResponse = result.data.listGames;
-      
-      return {
-        count: apiResponse.count,
-        next: apiResponse.nextToken ? `page=${page + 1}` : null,
-        results: apiResponse.items,
-      };
-      */
     } catch (error) {
       console.error("Error fetching games:", error);
       throw new Error(
