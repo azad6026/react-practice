@@ -10,6 +10,7 @@ import { Amplify } from "aws-amplify";
 import outputs from "../amplify_outputs.json";
 import router from "./services/routes";
 import { RouterProvider } from "react-router-dom";
+import GameList from "./components/GameList";
 Amplify.configure(outputs);
 
 const queryClient = new QueryClient();
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <QueryClientProvider client={queryClient}>
+        <GameList />
         <RouterProvider router={router}></RouterProvider>
         <ReactQueryDevtools />
       </QueryClientProvider>
