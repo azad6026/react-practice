@@ -1,0 +1,164 @@
+<div id="elm-banner-container" class="banner-container"></div>
+
+<style>
+  .banner-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Fix for grid layout - removed gaps */
+  :global(.grid-container) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  @media (min-width: 768px) {
+    :global(.grid-container) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  :global(.banner-item) {
+    margin-bottom: 0;
+    overflow: hidden; /* Ensure overflow is hidden for scale effect */
+  }
+
+  /* Position utilities */
+  :global(.absolute) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  /* Responsive image height */
+  :global(img.h-\[61vw\]) {
+    height: 61vw;
+    object-fit: cover; /* Ensure images cover their container */
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    :global(img.md\:h-\[30vw\]) {
+      height: 30vw;
+    }
+  }
+
+  /* Figure hover brightness effect */
+  :global(.banner-item figure) {
+    transition: filter 0.3s ease;
+  }
+
+  :global(.banner-item:hover figure) {
+    --tw-brightness: brightness(.75);
+    filter: var(--tw-brightness);
+  }
+
+  /* Text overlay styles with updated font styles */
+  :global(.text-overlay) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    color: white;
+  }
+
+  :global(.text-overlay h3) {
+    font-family: var(--font-serif, 'Spectral');
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.5rem;
+    color: white;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (min-width: 768px) {
+    :global(.text-overlay h3) {
+      font-size: 1.75rem;
+      line-height: 2.2rem;
+      font-weight: 400;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    :global(.text-overlay h3) {
+      font-size: 2.25rem;
+      line-height: 3rem;
+      font-weight: 400;
+    }
+  }
+  
+  :global(.text-overlay span) {
+    font-family: var(--font-sans, 'Spectral');
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: white;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (min-width: 1200px) {
+    :global(.text-overlay span) {
+      font-size: 1.1428571428571428rem;
+      line-height: 1.75rem;
+      font-weight: 700;
+      letter-spacing: .025em;
+    }
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    font-size: 1.25rem;
+    color: #4b5563;
+  }
+
+  .error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    font-size: 1.25rem;
+    color: #dc2626;
+    background-color: #fee2e2;
+    border-radius: 0.375rem;
+  }
+
+  /* Apply the banner text overlay shadow from utilities.css */
+  :global(.bg-white.bg-opacity-75) {
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Figure and figcaption specific styles */
+  :global(figure) {
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  :global(figcaption) {
+    display: block;
+    position: relative;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Load the Elm application
+    const app = Elm.Banner.init({
+      node: document.getElementById('elm-banner-container')
+    });
+  });
+</script>
+
+<script is:inline src="/elm-banner.js"></script> 
