@@ -1,130 +1,116 @@
 /* Custom utility classes */
 
-/* Better grid layout */
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
+/* ===== LAYOUT UTILITIES ===== */
+/* Text colors */
+@theme {
+  --text-grey-600: #4b5563;
+  --text-grey-700: #374151;
+  --text-grey-800: #1f2937;
+}
+.text-grey-600 {
+  color: var(--text-grey-600);
 }
 
+.text-gray-700 {
+  color: var(--text-grey-700);
+}
+
+.text-gray-800 {
+  color: var(--text-grey-800);
+}
+/* Grid layout */
 @media (min-width: 768px) {
-  .grid-container {
-    grid-template-columns: 1fr 1fr;
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
-.banner-item {
-  display: block;
-  margin-bottom: 0;
-  break-inside: avoid;
-  overflow: hidden; /* Ensure overflow is hidden for scale effect */
-}
-
-/* Position utilities */
-.absolute {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-/* Text overlay styles */
-.text-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 1.5rem;
-  color: white;
-}
-
+/* ===== TYPOGRAPHY UTILITIES ===== */
+/* Serif text styles */
 .text-2xl-serif {
-  font-family: var(--font-serif, "Spectral");
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 400;
   letter-spacing: 0.01em;
-  color: white;
 }
 
 .text-3xl-serif {
-  font-family: var(--font-serif, "Spectral");
   font-size: 1.75rem;
   line-height: 2.2rem;
   font-weight: 400;
   letter-spacing: 0.01em;
-  color: white;
 }
 
 .text-4xl-serif {
-  font-family: var(--font-serif, "Spectral");
   font-size: 2.25rem;
   line-height: 3rem;
   font-weight: 400;
   letter-spacing: 0.01em;
-  color: white;
 }
 
 .text-base-sans-bold-stretched {
-  font-family: var(--font-sans, "Spectral");
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 400;
   letter-spacing: 0.01em;
-  color: white;
 }
 
 .text-lg-sans-bold-stretched {
-  font-family: var(--font-sans, "Spectral");
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   font-weight: 400;
   letter-spacing: 0.01em;
-  color: white;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
+  .lg\:text-white {
+    color: white;
+  }
   .text-lg-sans-bold-stretched {
     font-size: 1.1428571428571428rem;
     line-height: 1.75rem;
     font-weight: 700;
     letter-spacing: 0.025em;
   }
+  .xl\:text-4xl-serif {
+    font-size: 2.25rem;
+    line-height: 3rem;
+    font-weight: 400;
+  }
 }
 
-.text-grey-600 {
-  color: #4b5563;
-}
-
-.text-gray-800 {
-  color: white;
-}
-
-.text-gray-700 {
-  color: white;
-}
-
+/* ===== HOVER EFFECTS ===== */
 /* Figure hover brightness effect */
-.banner-item figure {
-  transition: filter 0.3s ease;
+.transition {
+  transition-property: filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
 }
-
-.banner-item:hover figure {
-  --tw-brightness: brightness(0.75);
-  filter: var(--tw-brightness) var(--tw-blur) var(--tw-contrast)
-    var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate)
-    var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-/* Tailwind-style hover utilities */
 .hover\:brightness-75:hover {
   --tw-brightness: brightness(0.75);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
-    var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate)
-    var(--tw-sepia) var(--tw-drop-shadow);
+  filter: var(--tw-brightness);
 }
 
-/* Add subtle shadow to the banner text overlay */
-.banner-text-overlay {
-  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+/* ===== FIGURE & IMAGE STYLES ===== */
+
+figcaption {
+  padding: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  figcaption {
+    position: absolute;
+    inset: 0;
+  }
+}
+/* Responsive image height */
+img.h-\[61vw\] {
+  height: 61vw;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  img.md\:h-\[30vw\] {
+    height: 30vw;
+  }
 }

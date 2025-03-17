@@ -6221,6 +6221,7 @@ var $elm$html$Html$Attributes$href = function (url) {
 		_VirtualDom_noJavaScriptUri(url));
 };
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
+var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('taarget');
 var $elm$html$Html$img = _VirtualDom_node('img');
 var $elm$html$Html$span = _VirtualDom_node('span');
 var $elm$html$Html$Attributes$src = function (url) {
@@ -6234,25 +6235,26 @@ var $author$project$Banner$viewBanner = function (banner) {
 		$elm$html$Html$a,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('banner-item no-underline block relative'),
+				$elm$html$Html$Attributes$class('no-underline'),
 				$elm$html$Html$Attributes$href(banner.href),
-				$elm$html$Html$Attributes$id(banner.id)
+				$elm$html$Html$Attributes$id(banner.id),
+				$elm$html$Html$Attributes$target(banner.target)
 			]),
 		_List_fromArray(
 			[
 				A2(
-				$elm$html$Html$figure,
+				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('overflow-hidden m-0')
+						$elm$html$Html$Attributes$class('wrapper')
 					]),
 				_List_fromArray(
 					[
 						A2(
-						$elm$html$Html$div,
+						$elm$html$Html$figure,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$class('relative')
+								$elm$html$Html$Attributes$class('relative transition hover:brightness-75')
 							]),
 						_List_fromArray(
 							[
@@ -6272,23 +6274,17 @@ var $author$project$Banner$viewBanner = function (banner) {
 								$elm$html$Html$figcaption,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('absolute inset-0 flex flex-col justify-start')
+										$elm$html$Html$Attributes$class('text-grey-600 p-4 pt-3 w-full h-full lg:absolute lg:top-0 lg:left-0 lg:text-white lg:p-6')
 									]),
 								_List_fromArray(
 									[
-										A2(
-										$elm$html$Html$div,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('absolute text-overlay')
-											]),
-										_List_fromArray(
-											[
+										
+										
 												A2(
 												$elm$html$Html$h3,
 												_List_fromArray(
 													[
-														$elm$html$Html$Attributes$class('text-2xl-serif md:text-3xl-serif xl:text-4xl-serif mb-2')
+														$elm$html$Html$Attributes$class('text-2xl-serif md:text-3xl-serif xl:text-4xl-serif')
 													]),
 												_List_fromArray(
 													[
@@ -6304,7 +6300,7 @@ var $author$project$Banner$viewBanner = function (banner) {
 													[
 														$elm$html$Html$text(banner.linkText)
 													]))
-											]))
+											
 									]))
 							]))
 					]))
@@ -6323,7 +6319,7 @@ var $author$project$Banner$viewBanners = function (data) {
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('grid-container')
+						$elm$html$Html$Attributes$class('grid grid-cols-1 md:grid-cols-2')
 					]),
 				A2($elm$core$List$map, $author$project$Banner$viewBanner, data.banners))
 			]));

@@ -119,8 +119,8 @@ viewBanner banner =
                     , attribute "srcset" banner.srcset
                     ]
                     []
-                , figcaption [ class "absolute inset-0 flex flex-col justify-start" ]
-                    [ div [ class "absolute text-overlay" ]
+                , figcaption [ class "figcaption-styles" ]
+                    [ div [ class " text-grey" ]
                         [ h3 [ class "text-2xl-serif md:text-3xl-serif xl:text-4xl-serif mb-2" ]
                             [ text banner.title ]
                         , span [ class "text-base-sans-bold-stretched xl:text-lg-sans-bold-stretched" ]
@@ -163,4 +163,4 @@ bannerDecoder =
         (field "imageSizes" string)
         (field "srcset" string)
         (field "title" string)
-        (field "linkText" string) 
+        (field "linkText" string)

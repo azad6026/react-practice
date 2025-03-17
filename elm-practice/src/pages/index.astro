@@ -1,28 +1,288 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ElmBanner from '../components/ElmBanner.astro';
+import fs from 'fs';
+import path from 'path';
+import { marked } from 'marked';
+
+// Read the README.md file content
+const readmePath = path.resolve('./README.md');
+const readmeContent = fs.readFileSync(readmePath, 'utf-8');
+
+// Filter out license section and project structure section (and everything after)
+let filteredContent = readmeContent.replace(/## License[\s\S]*?(?=##|$)/, '');
+// Remove "🚀 Project Structure" and everything after it
+filteredContent = filteredContent.replace(/🚀 Project Structure[\s\S]*/, '');
+
+// Parse the filtered markdown to HTML
+const readmeHtml = marked.parse(filteredContent);
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<main>
+	<main class="w-full min-h-screen bg-gray-50">
 		<header class="text-center py-8 mb-8 bg-gray-50">
 			<h1 class="text-4xl font-bold text-gray-800 mb-2">Banner Component Demo</h1>
 			<p class="text-gray-600 max-w-2xl mx-auto">
 				A responsive banner grid built with Elm and Astro. The banners display in a 2-column grid on desktop 
 				and 1-column on mobile, with text overlays on each image.
 			</p>
+			
+			<details class="mt-8 text-left mx-auto max-w-3xl rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out bg-white border border-indigo-100" id="project-details" style="height: auto; padding: 10px; margin: 10px;">
+				<summary class="text-xl font-semibold text-white cursor-pointer flex items-center justify-between p-4 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 transition-all duration-200">
+					<span>About this project</span>
+					<div class="hamburger-container relative flex items-center justify-center" style="width:24px; height:24px; min-width:24px; min-height:24px;">
+						<svg class="hamburger-icon text-white transition-all duration-300 ease-in-out" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px; height:24px; min-width:24px; min-height:24px;">
+							<path d="M4 6H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+						<svg class="close-icon text-white transition-all duration-300 ease-in-out opacity-0 absolute" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px; height:24px; min-width:24px; min-height:24px;">
+							<path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+				</summary>
+				
+				<div class="details-content p-6 transition-all duration-300 ease-in-out transform -translate-y-2 opacity-0">
+					<div class="markdown-content text-gray-700" set:html={readmeHtml}>
+					</div>
+				</div>
+			</details>
 		</header>
 		<ElmBanner />
 	</main>
 </Layout>
 
 <style>
-	main {
-		width: 100%;
-		min-height: 100vh;
-		background-color: #f9fafb;
+	/* Hide browser's default details marker */
+	details summary {
+		list-style: none;
+	}
+	
+	details summary::-webkit-details-marker {
+		display: none;
+	}
+	
+	/* Default state for icons */
+	.hamburger-icon {
+		display: block !important;
+		opacity: 1;
+		transform: rotate(0);
+		position: relative;
+		z-index: 1;
+	}
+	
+	.close-icon {
+		display: block !important;
+		opacity: 0;
+		transform: rotate(90deg);
+		position: absolute;
+		z-index: 2;
+	}
+	
+	/* Make sure the container has size */
+	.hamburger-container {
+		display: flex !important;
+		width: 24px !important;
+		height: 24px !important;
+		min-width: 24px !important;
+		min-height: 24px !important;
+		margin-left: 8px;
+	}
+	
+	/* Icon visibility states when details is open */
+	details[open] .hamburger-icon {
+		opacity: 0;
+		transform: rotate(90deg);
+	}
+	
+	details[open] .close-icon {
+		opacity: 1;
+		transform: rotate(0);
+	}
+	
+	details[open] .details-content {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	
+	/* Styling for the markdown content */
+	.markdown-content h1 {
+		font-size: 1.8rem;
+		font-weight: 700;
+		margin-top: 1.5rem;
+		margin-bottom: 1rem;
+		color: #1f2937;
+	}
+	
+	.markdown-content h2 {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+		color: #1f2937;
+	}
+	
+	.markdown-content h3, .markdown-content h4 {
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin-top: 1.25rem;
+		margin-bottom: 0.5rem;
+		color: #374151;
+	}
+	
+	.markdown-content p {
+		margin-bottom: 1rem;
+		line-height: 1.6;
+	}
+	
+	.markdown-content ul, .markdown-content ol {
+		margin-left: 1.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.markdown-content ul {
+		list-style-type: disc;
+	}
+	
+	.markdown-content ol {
+		list-style-type: decimal;
+	}
+	
+	.markdown-content li {
+		margin-bottom: 0.5rem;
+		line-height: 1.6;
+	}
+	
+	/* VS Code-like styling for code blocks */
+	.markdown-content pre {
+		background-color: #1e1e1e; /* VS Code dark theme background */
+		padding: 1rem;
+		border-radius: 0.375rem;
+		overflow-x: auto;
+		margin-bottom: 1rem;
+		font-size: 0.875rem;
+		color: #d4d4d4; /* VS Code default text color */
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+		border: 1px solid #313131;
+	}
+	
+	.markdown-content code {
+		font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+		font-size: 0.875em;
+		background-color: #2a2a2a; /* VS Code inline code background */
+		padding: 0.2em 0.4em;
+		border-radius: 0.25rem;
+		color: #d7ba7d; /* Light yellow like VS Code */
+		border: 1px solid #3e3e3e;
+	}
+	
+	.markdown-content pre code {
+		background-color: transparent;
+		padding: 0;
+		border-radius: 0;
+		color: inherit;
+		border: none;
+	}
+	
+	/* Syntax highlighting for code blocks to mimic VS Code */
+	.markdown-content pre .keyword {
+		color: #569cd6; /* blue */
+	}
+	
+	.markdown-content pre .string {
+		color: #ce9178; /* orange-red */
+	}
+	
+	.markdown-content pre .comment {
+		color: #6a9955; /* green */
+	}
+	
+	.markdown-content pre .function {
+		color: #dcdcaa; /* yellow */
+	}
+	
+	.markdown-content pre .variable {
+		color: #9cdcfe; /* light blue */
 	}
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const detailsElement = document.getElementById('project-details');
+		
+		if (detailsElement) {
+			// Add animation for opening/closing
+			detailsElement.addEventListener('toggle', () => {
+				const summaryHeight = detailsElement.querySelector('summary').offsetHeight;
+				const contentEl = detailsElement.querySelector('.details-content');
+				
+				// Ensure the hamburger icons are always visible
+				const hamburgerIcon = detailsElement.querySelector('.hamburger-icon');
+				const closeIcon = detailsElement.querySelector('.close-icon');
+				
+				if (hamburgerIcon) {
+					hamburgerIcon.style.width = '24px';
+					hamburgerIcon.style.height = '24px';
+					hamburgerIcon.style.minWidth = '24px';
+					hamburgerIcon.style.minHeight = '24px';
+				}
+				
+				if (closeIcon) {
+					closeIcon.style.width = '24px';
+					closeIcon.style.height = '24px';
+					closeIcon.style.minWidth = '24px';
+					closeIcon.style.minHeight = '24px';
+				}
+				
+				if (detailsElement.open) {
+					// Set content visible immediately (animation handled by CSS)
+					contentEl.style.display = 'block';
+					// Always ensure height is auto for proper content display
+					setTimeout(() => {
+						detailsElement.style.height = 'auto';
+					}, 10);
+				} else {
+					// Hide content after animation completes
+					setTimeout(() => {
+						if (!detailsElement.open) {
+							contentEl.style.display = 'none';
+						}
+						// Always ensure height is auto
+						detailsElement.style.height = 'auto';
+					}, 300);
+				}
+			});
+			
+			// Initialize - ensure content is hidden initially
+			const contentEl = detailsElement.querySelector('.details-content');
+			if (!detailsElement.open) {
+				contentEl.style.display = 'none';
+			}
+			
+			// Make sure icons have proper size on page load
+			const hamburgerIcon = detailsElement.querySelector('.hamburger-icon');
+			const closeIcon = detailsElement.querySelector('.close-icon');
+			
+			if (hamburgerIcon) {
+				hamburgerIcon.style.width = '24px';
+				hamburgerIcon.style.height = '24px';
+				hamburgerIcon.style.minWidth = '24px';
+				hamburgerIcon.style.minHeight = '24px';
+			}
+			
+			if (closeIcon) {
+				closeIcon.style.width = '24px';
+				closeIcon.style.height = '24px';
+				closeIcon.style.minWidth = '24px';
+				closeIcon.style.minHeight = '24px';
+			}
+			
+			// Ensure height is auto on page load
+			detailsElement.style.height = 'auto';
+		}
+	});
+</script>

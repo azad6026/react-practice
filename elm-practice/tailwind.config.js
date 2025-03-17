@@ -5,8 +5,10 @@ export default {
     './public/elm-banner.js'
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
+
   plugins: [],
   safelist: [
     'h-[61vw]',

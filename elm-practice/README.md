@@ -1,4 +1,4 @@
-# Elm Banner Component in Astro
+## Elm Banner Component in Astro
 
 This project demonstrates how to integrate an Elm application within an Astro site. It features a responsive banner grid component built with Elm that fetches data from a JSON file and renders it with custom styling.
 
