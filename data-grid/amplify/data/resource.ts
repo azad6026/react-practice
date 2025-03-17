@@ -7,7 +7,7 @@ const schema = a.schema({
       name: a.string().required(),
       slug: a.string().required(),
       games_count: a.integer().required(),
-      image_background: a.string().required(),
+      image_background: a.string(),
       games: a.hasMany("Game", "genreId"),
     })
     .authorization((allow) => [allow.guest()]),
