@@ -1,45 +1,4 @@
 <div id="elm-banner-container" class="banner-container"></div>
-
-<style>
-  /* Component-specific container styles */
-  .banner-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  /* Component-specific loading and error states */
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    font-size: 1.25rem;
-    color: #4b5563;
-  }
-
-  .error {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    font-size: 1.25rem;
-    color: #dc2626;
-    background-color: #fee2e2;
-    border-radius: 0.375rem;
-  }
-
-  /* Direct hover styles using global selector */
-  :global(.banner-item figure) {
-    transition: filter 0.3s ease !important;
-  }
-
-  :global(.banner-item figure:hover) {
-    filter: brightness(.75) !important;
-    cursor: pointer !important;
-  }
-</style>
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Load the Elm application
