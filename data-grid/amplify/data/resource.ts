@@ -42,7 +42,7 @@ const schema = a.schema({
       image: a.string(),
       year_start: a.integer(),
       year_end: a.integer(),
-      platformFamilyId: a.string().required(),
+      platformFamilyId: a.string(),
       platformFamily: a.belongsTo("PlatformFamily", "platformFamilyId"),
     })
     .authorization((allow) => [allow.guest()]),
