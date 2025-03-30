@@ -294,6 +294,15 @@ const GameContent: React.FC = () => {
         {games.map((game) => (
           <GridItem key={game.id}>
             <Card maxW="sm" h="100%">
+              {game.genre?.image_background && (
+                <Box
+                  h="200px"
+                  bgImage={`url(${game.genre.image_background})`}
+                  bgSize="cover"
+                  bgPosition="center"
+                  borderRadius="md"
+                />
+              )}
               <CardBody>
                 <Stack mt="6" spacing="3">
                   <Heading size="md">{game.name}</Heading>
